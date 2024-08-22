@@ -1,4 +1,5 @@
-import csv
+from sys    import exit
+from csv    import DictReader, DictWriter
 
 
 class Account:
@@ -55,7 +56,7 @@ class Account:
     @staticmethod
     def get_accounts(filename: str) -> list["Account"]:
         with open(filename) as file:
-            reader = csv.DictReader(file)
+            reader = DictReader(file)
             users: list["Account"] = []
 
             for row in reader:
@@ -68,13 +69,45 @@ class Account:
         return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."
 
 
+def get_main() -> str:
+    entry: str = ""
+    values: set[str] = set(["0", "1", "2"])
+
+    while entry not in values:
+        print("0: Exit")
+        print("1: Login")
+        print("2: Create account")
+        entry = input("Which action would you like to do? ")
+    
+    if entry == "0":
+        exit()
+    
+    return int(entry)
+
+
+def get_login() -> str:
+    pass
+
+
 def main():
     # init accounts
+    entry: str = ""
+    new_account: list[int | str] = ["" for _ in range(3)]
     filename: str = "Accounts.csv"
     accounts: list["Account"] = Account.get_accounts(filename)
 
-    for account in accounts:
-        print(account)
+    while True:
+        entry = get_main()
+        match(entry):
+            case 1:
+                print("Not made yet...")
+            case 2:
+                new_account[0] = get_first()
+                new_account[1] = get_last()
+                new_account[2] = get_age()
+                new_account[3] = get_password()
+                print("New account added.")
+                accounts.append(Account(new_account[0], new_account[1], new_account[2], new_account[3], "0"))
 
 
 if __name__ == "__main__":
