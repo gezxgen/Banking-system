@@ -51,18 +51,30 @@ class Account:
             self._balance = int(new_balance)
         except ValueError:
             print("The entered age could not be converted into a number.")
+    
+    @staticmethod
+    def get_accounts(filename: str) -> list["Account"]:
+        with open(filename) as file:
+            reader = csv.DictReader(file)
+            users: list["Account"] = []
+
+            for row in reader:
+                users.append(Account(row["first"], row["last"], row["age"], row["password"], row["balance"]))
+
+        users.append(Account("Keivn", "Muster", "18", "Kevin123", "1000"))
+        return users
 
     def __str__(self) -> str:
         return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."
 
 
 def main():
-    filename = "Accounts.csv"
-    with open(filename) as file:
-        users: list[int] = [0 for _ in range(sum(1 for line in file) - 1)]
-    
-    users.append(Account("Keivn", "Muster", "18", "Kevin123", "1000"))
-    print(users[-1])
+    # init accounts
+    filename: str = "Accounts.csv"
+    accounts: list["Account"] = Account.get_accounts(filename)
+
+    for account in accounts:
+        print(account)
 
 
 if __name__ == "__main__":
