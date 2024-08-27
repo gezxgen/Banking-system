@@ -10,10 +10,7 @@ def get_main() -> str:
         print("1: Login")
         print("2: Create account")
         entry = input("Which action would you like to do? ")
-    
-    if entry == "0":
-        exit()
-    
+
     return int(entry)
 
 

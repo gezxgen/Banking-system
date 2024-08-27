@@ -52,11 +52,17 @@ class Account:
         except ValueError:
             print("The entered age could not be converted into a number.")
     
-    def deposit(self, n: int) -> None:
-        pass
+    def deposit(self, n: str) -> None:
+        try:
+            self._balance += int(n)
+        except ValueError:
+            print("The entered deposit could not be converted into a number.")
 
     def withdraw(self, n: int) -> None:
-        pass
+        try:
+            self._balance -= int(n)
+        except ValueError:
+            print("The entered withdraw could not be converted into a number.")
     
     @staticmethod
     def get_accounts(filename: str) -> list["Account"]:
@@ -66,13 +72,21 @@ class Account:
 
             for row in reader:
                 users.append(Account(row["first"], row["last"], row["age"], row["password"], row["balance"]))
-
-        users.append(Account("Keivn", "Muster", "18", "Kevin123", "1000"))
         return users
 
     @staticmethod
-    def set_accounts(filename: str) -> None:
-        pass
+    def set_accounts(filename: str, users: list["Account"]) -> None:
+        with open(filename, "w", newline="") as file:
+            writer = DictWriter(file, fieldnames=["first", "last", "age", "password", "balance"])
+
+            writer.writeheader()
+            for user in users:
+                writer.writerow({"first": user.name.split(" ")[0],
+                                 "last": user.name.split(" ")[-1],
+                                 "age": user.age,
+                                 "password": user.password,
+                                 "balance": user.balance})
+
 
     def __str__(self) -> str:
         return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."
