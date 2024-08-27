@@ -16,7 +16,7 @@ class Account:
     @name.setter
     def name(self, name: str) -> None:
         if validate(name, "n"):
-            self._name = name.strip()
+            self._name = name.strip().lower().capitalize()
 
     @property
     def age(self) -> int:

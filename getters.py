@@ -1,7 +1,7 @@
 # get the users option
 def get_main() -> int:
     entry: str = ""
-    values: set[str] = set(["0", "1", "2"])
+    values: set[str] = {"0", "1", "2"}
 
     while entry not in values:
         print("0: Exit")
@@ -35,31 +35,75 @@ def get_password() -> str:
             return password
 
 def get_balance() -> str:
-     pass
+     while True:
+         balance: str = input("Enter the inital balance: ")
+         if validate(balance, "b"):
+             return balance
 
 def validate(dut: str, mode: str) -> bool:
      mode.lower()
-     values = set(["n", "a", "p", "b", "d", "w"])
+     dut_int: int = 0
+     values = {"n", "a", "p", "b", "d", "w"}
      
      if mode not in values:
-          return "Wrong mode entered"
+          return False
      
-     match(mode):
+     match mode:
           case "n":
-               pass
+               dut.strip()
+               if dut and dut.isalpha() and len(dut) < 20:
+                   return True
           
           case "a":
-               pass
-          
+               try:
+                   dut_int = int(dut)
+               except ValueError:
+                   return False
+               if 0 <= dut_int <= 120:
+                   return True
+
           case "p":
-               pass
+              # letters (capital / lower), numeric, special characters
+              results: list[bool] = [False for _ in range(4)]
+              for char in dut:
+                  if char.islower():
+                      results[0] = True
+                  elif char.isupper():
+                      results[1] = True
+                  elif char.isnumeric():
+                      results[2] = True
+                  else:
+                      results[3] = True
+
+              for result in results:
+                  if result:
+                      dut_int += 1
+                  if dut_int == 4 and len(dut) >= 8:
+                      return True
           
           case "b":
-               pass
+              if validate_num(dut):
+                  return True
           
           case "d":
-               pass
+              if validate_num(dut):
+                  return True
           
           case "w":
-               pass
-          
+              if validate_num(dut):
+                  return True
+
+          case _:
+              return False
+
+     return False
+
+def validate_num(n: str, number=10000) -> bool:
+    try:
+        num: int = int(n)
+    except ValueError:
+        return False
+    if 0 <= num <= number:
+        return True
+    else:
+        return False
