@@ -1,5 +1,6 @@
-from csv        import DictReader, DictWriter
-from getters    import validate
+from csv import DictReader, DictWriter
+from getters import validate
+
 
 # Class blueprint for an account
 class Account:
@@ -20,7 +21,7 @@ class Account:
 
     @property
     def age(self) -> int:
-        return self._age
+        return int(self._age)
     
     @age.setter
     def age(self, new_age: str) -> None:
@@ -38,7 +39,7 @@ class Account:
 
     @property
     def balance(self) -> int:
-        return self._balance
+        return int(self._balance)
     
     @balance.setter
     def balance(self, new_balance: str):

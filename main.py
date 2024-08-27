@@ -1,18 +1,17 @@
-from getters    import *
-from classes    import Account
+from getters import *
+from classes import Account
 
 
 def main():
     # init accounts
-    entry: str = ""
     new_account: list[int | str] = ["" for _ in range(5)]
     filename: str = "Accounts.csv"
     accounts: list["Account"] = Account.get_accounts(filename)
 
     # endless loop
     while True:
-        entry = get_main()
-        match(entry):
+        entry: int = int(get_main())
+        match entry:
             # Exit
             case 0:
                 Account.set_accounts(filename, accounts)
@@ -20,7 +19,7 @@ def main():
 
             # Login
             case 1:
-                print("Not made yet...account übertragen, löschen ")
+                print("Not made yet...")
 
             # New account
             case 2:

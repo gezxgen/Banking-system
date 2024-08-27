@@ -1,5 +1,5 @@
 # get the users option
-def get_main() -> int:
+def get_main() -> str:
     entry: str = ""
     values: set[str] = {"0", "1", "2"}
 
@@ -9,11 +9,12 @@ def get_main() -> int:
         print("2: Create account")
         entry = input("Which action would you like to do? ")
 
-    return int(entry)
+    return entry
 
 
 def get_login() -> str:
     pass
+
 
 def get_name(part: str) -> str:
     while True:
@@ -21,12 +22,14 @@ def get_name(part: str) -> str:
         if validate(name, "n"):
             return name.strip().lower().capitalize()
 
+
 def get_age() -> int:
     while True:
         age = input("Enter your age: ")
         if validate(age, "a"):
-                return int(age)
+            return int(age)
         print("Entered age was not a number or smaller 0 or greater 120.")
+
 
 def get_password() -> str:
     while True:
@@ -34,69 +37,71 @@ def get_password() -> str:
         if validate(password, "p"):
             return password
 
+
 def get_balance() -> str:
-     while True:
-         balance: str = input("Enter the inital balance: ")
-         if validate(balance, "b"):
-             return balance
+    while True:
+        balance: str = input("Enter the initial balance: ")
+        if validate(balance, "b"):
+            return balance
+
 
 def validate(dut: str, mode: str) -> bool:
-     mode.lower()
-     dut_int: int = 0
-     values = {"n", "a", "p", "b", "d", "w"}
-     
-     if mode not in values:
-          return False
-     
-     match mode:
-          case "n":
-               dut.strip()
-               if dut and dut.isalpha() and len(dut) < 20:
-                   return True
-          
-          case "a":
-               try:
-                   dut_int = int(dut)
-               except ValueError:
-                   return False
-               if 0 <= dut_int <= 120:
-                   return True
+    mode.lower()
+    dut_int: int = 0
+    values = {"n", "a", "p", "b", "d", "w"}
 
-          case "p":
-              # letters (capital / lower), numeric, special characters
-              results: list[bool] = [False for _ in range(4)]
-              for char in dut:
-                  if char.islower():
-                      results[0] = True
-                  elif char.isupper():
-                      results[1] = True
-                  elif char.isnumeric():
-                      results[2] = True
-                  else:
-                      results[3] = True
+    if mode not in values:
+        return False
 
-              for result in results:
-                  if result:
-                      dut_int += 1
-                  if dut_int == 4 and len(dut) >= 8:
-                      return True
-          
-          case "b":
-              if validate_num(dut):
-                  return True
-          
-          case "d":
-              if validate_num(dut):
-                  return True
-          
-          case "w":
-              if validate_num(dut):
-                  return True
+    match mode:
+        case "n":
+            dut.strip()
+            if dut and dut.isalpha() and len(dut) < 20:
+                return True
 
-          case _:
-              return False
+        case "a":
+            try:
+                dut_int = int(dut)
+            except ValueError:
+                return False
+            if 0 <= dut_int <= 120:
+                return True
 
-     return False
+        case "p":
+            results: list[bool] = [False for _ in range(4)]
+            for char in dut:
+                if char.islower():
+                    results[0] = True
+                elif char.isupper():
+                    results[1] = True
+                elif char.isnumeric():
+                    results[2] = True
+                else:
+                    results[3] = True
+
+            for result in results:
+                if result:
+                    dut_int += 1
+                if dut_int == 4 and len(dut) >= 8:
+                    return True
+
+        case "b":
+            if validate_num(dut):
+                return True
+
+        case "d":
+            if validate_num(dut):
+                return True
+
+        case "w":
+            if validate_num(dut):
+                return True
+
+        case _:
+            return False
+
+    return False
+
 
 def validate_num(n: str, number=10000) -> bool:
     try:
