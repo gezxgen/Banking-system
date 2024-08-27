@@ -1,4 +1,5 @@
-from csv import DictReader, DictWriter
+from csv        import DictReader, DictWriter
+from getters    import validate
 
 # Class blueprint for an account
 class Account:
@@ -14,10 +15,8 @@ class Account:
 
     @name.setter
     def name(self, name: str) -> None:
-        if name.strip() != "":
+        if validate(name, "n"):
             self._name = name.strip()
-        else:
-            print("The entered first or last name is empty.")
 
     @property
     def age(self) -> int:
@@ -25,10 +24,8 @@ class Account:
     
     @age.setter
     def age(self, new_age: str) -> None:
-        try:
+        if validate(new_age, "a"):
             self._age = int(new_age)
-        except ValueError:
-            print("The entered age could not be converted into a number.")
 
     @property
     def password(self) -> str:
@@ -36,10 +33,8 @@ class Account:
     
     @password.setter
     def password(self, new_password: str) -> None:
-        if new_password != "":
+        if validate(new_password, "p"):
             self._password = new_password
-        else:
-            print("The entered password is empty.")
 
     @property
     def balance(self) -> int:
@@ -47,22 +42,16 @@ class Account:
     
     @balance.setter
     def balance(self, new_balance: str):
-        try:
+        if validate(new_balance, "b"):
             self._balance = int(new_balance)
-        except ValueError:
-            print("The entered age could not be converted into a number.")
     
     def deposit(self, n: str) -> None:
-        try:
+        if validate(n, "d"):
             self._balance += int(n)
-        except ValueError:
-            print("The entered deposit could not be converted into a number.")
 
-    def withdraw(self, n: int) -> None:
-        try:
+    def withdraw(self, n: str) -> None:
+        if validate(n, "w"):
             self._balance -= int(n)
-        except ValueError:
-            print("The entered withdraw could not be converted into a number.")
     
     @staticmethod
     def get_accounts(filename: str) -> list["Account"]:
@@ -86,7 +75,6 @@ class Account:
                                  "age": user.age,
                                  "password": user.password,
                                  "balance": user.balance})
-
 
     def __str__(self) -> str:
         return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."

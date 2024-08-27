@@ -5,7 +5,7 @@ from classes    import Account
 def main():
     # init accounts
     entry: str = ""
-    new_account: list[int | str] = ["" for _ in range(4)]
+    new_account: list[int | str] = ["" for _ in range(5)]
     filename: str = "Accounts.csv"
     accounts: list["Account"] = Account.get_accounts(filename)
 
@@ -24,11 +24,12 @@ def main():
 
             # New account
             case 2:
-                new_account[0] = get_first()
-                new_account[1] = get_last()
+                new_account[0] = get_name("first")
+                new_account[1] = get_name("last")
                 new_account[2] = get_age()
                 new_account[3] = get_password()
-                accounts.append(Account(new_account[0], new_account[1], new_account[2], new_account[3], "0"))
+                new_account[4] = get_balance()
+                accounts.append(Account(new_account[0], new_account[1], new_account[2], new_account[3], new_account[4]))
                 print("New account added.")
 
 
