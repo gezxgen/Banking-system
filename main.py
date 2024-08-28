@@ -32,6 +32,10 @@ def main():
                 Account.set_accounts(filename, accounts)
                 print("New account added.")
 
+            # Print a list of all accounts
+            case 3:
+                Account.print_accounts(filename, accounts)
+
 
 if __name__ == "__main__":
     main()

@@ -1,12 +1,13 @@
 # get the users option
 def get_main() -> str:
     entry: str = ""
-    values: set[str] = {"0", "1", "2"}
+    values: set[str] = {"0", "1", "2", "3"}
 
     while entry not in values:
         print("0: Exit")
         print("1: Login")
         print("2: Create account")
+        print("3: View accounts")
         entry = input("Which action would you like to do? ")
 
     return entry
@@ -36,7 +37,7 @@ def get_password() -> str:
         password: str = input("Enter your password: ")
         if validate(password, "p"):
             return password
-        print("Entered passord did not contain lower, upper, numeric and special characters.")
+        print("Entered password did not contain lower, upper, numeric and special characters.")
         print("Entered password was not longer than 8 characters.")
 
 
@@ -45,7 +46,7 @@ def get_balance() -> str:
         balance: str = input("Enter the initial balance: ")
         if validate(balance, "b"):
             return balance
-        print("Entered balbance was not a number or smaller 0 or greater 10000.")
+        print("Entered balance was not a number or smaller 0 or greater 10000.")
 
 
 def validate(dut: str, mode: str) -> bool:
