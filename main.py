@@ -29,6 +29,7 @@ def main():
                 new_account[3] = get_password()
                 new_account[4] = get_balance()
                 accounts.append(Account(new_account[0], new_account[1], new_account[2], new_account[3], new_account[4]))
+                Account.set_accounts(filename, accounts)
                 print("New account added.")
 
 

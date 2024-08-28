@@ -36,6 +36,8 @@ def get_password() -> str:
         password: str = input("Enter your password: ")
         if validate(password, "p"):
             return password
+        print("Entered passord did not contain lower, upper, numeric and special characters.")
+        print("Entered password was not longer than 8 characters.")
 
 
 def get_balance() -> str:
@@ -43,6 +45,7 @@ def get_balance() -> str:
         balance: str = input("Enter the initial balance: ")
         if validate(balance, "b"):
             return balance
+        print("Entered balbance was not a number or smaller 0 or greater 10000.")
 
 
 def validate(dut: str, mode: str) -> bool:

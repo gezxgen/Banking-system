@@ -49,10 +49,14 @@ class Account:
     def deposit(self, n: str) -> None:
         if validate(n, "d"):
             self._balance += int(n)
+            return
+        print("Entered deposit was not a number or smaller 0 or greater 10000.")
 
     def withdraw(self, n: str) -> None:
         if validate(n, "w"):
             self._balance -= int(n)
+            return
+        print("Entered withdraw was not a number or smaller 0 or greater 10000.")
     
     @staticmethod
     def get_accounts(filename: str) -> list["Account"]:
