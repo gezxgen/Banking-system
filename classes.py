@@ -81,6 +81,11 @@ class Account:
                                  "password": user.password,
                                  "balance": user.balance})
 
+    @staticmethod
+    def print_accounts(users: list["Account"]) -> None:
+        for user in users:
+            print(f"Name: {user.name:<20} Age: {user.age}")
+
     def __str__(self) -> str:
         return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."
     

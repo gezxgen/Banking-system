@@ -34,7 +34,7 @@ def main():
 
             # Print a list of all accounts
             case 3:
-                Account.print_accounts(filename, accounts)
+                Account.print_accounts(accounts)
 
 
 if __name__ == "__main__":
