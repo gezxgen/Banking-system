@@ -11,6 +11,7 @@ def main():
     is_logged_in: bool
     entry: str
     amount: str
+    user_name: str
     entry_inner: int = 0
 
     # endless loop
@@ -25,7 +26,8 @@ def main():
             # Login
             case 1:
                 print("Entry the details to your account.")
-                if user_index := validate_user((get_name("first") + " " + get_name("last")), get_password(), accounts):
+                user_name = get_name("first") + " " + get_name("last")
+                if user_index := validate_user(user_name, get_password(), accounts):
                     is_logged_in = True
                     print("Logged in successfully")
                 else:
@@ -44,14 +46,14 @@ def main():
                             case 1:
                                 amount = get_withdraw_deposit("deposit")
                                 accounts[user_index].deposit(amount)
-                                print(f"New account balance: {accounts[user_index]}")
+                                print(f"New account balance: {accounts[user_index].balance}")
                                 print("Deposit was successful")
 
                             # Withdraw
                             case 2:
                                 amount = get_withdraw_deposit("withdraw")
                                 accounts[user_index].withdraw(amount)
-                                print(f"New account balance: {accounts[user_index]}")
+                                print(f"New account balance: {accounts[user_index].balance}")
                                 print("Withdraw was successful")
 
                             # Change password

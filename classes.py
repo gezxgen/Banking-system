@@ -1,5 +1,4 @@
 from csv import DictReader, DictWriter
-from getters import *
 
 
 # Class blueprint for an account
@@ -16,6 +15,7 @@ class Account:
 
     @name.setter
     def name(self, name: str) -> None:
+        from getters import validate
         if validate(name, "n"):
             self._name = name.strip().lower().capitalize()
 
@@ -25,6 +25,7 @@ class Account:
     
     @age.setter
     def age(self, new_age: str) -> None:
+        from getters import validate
         if validate(new_age, "a"):
             self._age = int(new_age)
 
@@ -34,6 +35,7 @@ class Account:
     
     @password.setter
     def password(self, new_password: str) -> None:
+        from getters import validate
         if validate(new_password, "p"):
             self._password = new_password
 
@@ -43,18 +45,21 @@ class Account:
     
     @balance.setter
     def balance(self, new_balance: str):
+        from getters import validate
         if validate(new_balance, "b"):
             self._balance = int(new_balance)
     
     def deposit(self, n: str) -> None:
+        from getters import validate
         if validate(n, "d"):
-            self._balance += int(n)
+            self._balance = str(int(self._balance) + int(n))
             return
         print("Entered deposit was not a number or smaller 0 or greater 10000.")
 
     def withdraw(self, n: str) -> None:
+        from getters import validate
         if validate(n, "w"):
-            self._balance -= int(n)
+            self._balance = str(int(self._balance) - int(n))
             return
         print("Entered withdraw was not a number or smaller 0 or greater 10000.")
     
