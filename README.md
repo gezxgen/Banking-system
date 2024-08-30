@@ -393,40 +393,40 @@ class Account:
 
 ### Method: `__init__(self, first: str, last: str, age: str, password: str, balance: str) -> None`
 ```python
-    def __init__(self, first: str, last: str, age: str, password: str, balance: str) -> None:
-        self._name = f"{first} {last}"
-        self._age = age
-        self._password = password
-        self._balance = balance
+def __init__(self, first: str, last: str, age: str, password: str, balance: str) -> None:
+    self._name = f"{first} {last}"
+    self._age = age
+    self._password = password
+    self._balance = balance
 ```
 - **Purpose**: Initializes a new account with the provided details.
 
 ### Property: `name`
 ```python
-    @property
-    def name(self) -> str:
-        return self._name
+@property
+def name(self) -> str:
+    return self._name
 
-    @name.setter
-    def name(self, name: str) -> None:
-        from getters import validate
-        name.capitalize()
-        if validate(name, "n"):
-            self._name = name.strip().lower().capitalize()
+@name.setter
+def name(self, name: str) -> None:
+    from getters import validate
+    name.capitalize()
+    if validate(name, "n"):
+        self._name = name.strip().lower().capitalize()
 ```
 - **Purpose**: Gets or sets the account holder's name.
 
 ### Property: `age`
 ```python
-    @property
-    def age(self) -> int:
-        return int(self._age)
-    
-    @age.setter
-    def age(self, new_age: str) -> None:
-        from getters import validate
-        if validate(new_age, "a"):
-            self._age = int(new_age)
+@property
+def age(self) -> int:
+    return int(self._age)
+
+@age.setter
+def age(self, new_age: str) -> None:
+    from getters import validate
+    if validate(new_age, "a"):
+        self._age = int(new_age)
 ```
 - **Purpose**: Gets or sets the account holder's age.
 
@@ -444,84 +444,84 @@ def password(self, value: str) -> None:
 
 ### Property: `balance`
 ```python
-    @property
-    def password(self) -> str:
-        return self._password
-    
-    @password.setter
-    def password(self, new_password: str) -> None:
-        from getters import validate
-        if validate(new_password, "p"):
-            self._password = new_password
+@property
+def password(self) -> str:
+    return self._password
+
+@password.setter
+def password(self, new_password: str) -> None:
+    from getters import validate
+    if validate(new_password, "p"):
+        self._password = new_password
 ```
 - **Purpose**: Gets or sets the account balance.
 
 ### Method: `deposit(self, n: str) -> None`
 ```python
-    def deposit(self, n: str) -> None:
-        from getters import validate
-        if validate(n, "d"):
-            self._balance = str(int(self._balance) + int(n))
-            return
-        print("Entered deposit was not a number or smaller 0 or greater 10000.")
+def deposit(self, n: str) -> None:
+    from getters import validate
+    if validate(n, "d"):
+        self._balance = str(int(self._balance) + int(n))
+        return
+    print("Entered deposit was not a number or smaller 0 or greater 10000.")
 ```
 - **Purpose**: Deposits a specified amount into the account.
 
 ### Method: `withdraw(self, n: str) -> None`
 ```python
-    def withdraw(self, n: str) -> None:
-        from getters import validate
-        if validate(n, "w"):
-            self._balance = str(int(self._balance) - int(n))
-            return
-        print("Entered withdraw was not a number or smaller 0 or greater 10000.")
+def withdraw(self, n: str) -> None:
+    from getters import validate
+    if validate(n, "w"):
+        self._balance = str(int(self._balance) - int(n))
+        return
+    print("Entered withdraw was not a number or smaller 0 or greater 10000.")
 ```
 - **Purpose**: Withdraws a specified amount from the account.
 
 ### Static Method: `get_accounts(filename: str) -> list["Account"]`
 ```python
-    @staticmethod
-    def get_accounts(filename: str) -> list["Account"]:
-        with open(filename) as file:
-            reader = DictReader(file)
-            users: list["Account"] = []
+@staticmethod
+def get_accounts(filename: str) -> list["Account"]:
+    with open(filename) as file:
+        reader = DictReader(file)
+        users: list["Account"] = []
 
-            for row in reader:
-                users.append(Account(row["first"], row["last"], row["age"], row["password"], row["balance"]))
-        return users
+        for row in reader:
+            users.append(Account(row["first"], row["last"], row["age"], row["password"], row["balance"]))
+    return users
 ```
 - **Purpose**: Reads account data from a CSV file and returns a list of `Account` objects.
 
 ### Static Method: `set_accounts(filename: str, users: list["Account"]) -> None`
 ```python
 @staticmethod
-    def set_accounts(filename: str, users: list["Account"]) -> None:
-        with open(filename, "w", newline="") as file:
-            writer = DictWriter(file, fieldnames=["first", "last", "age", "password", "balance"])
+def set_accounts(filename: str, users: list["Account"]) -> None:
+    with open(filename, "w", newline="") as file:
+        writer = DictWriter(file, fieldnames=["first", "last", "age", "password", "balance"])
 
-            writer.writeheader()
-            for user in users:
-                writer.writerow({"first": user.name.split(" ")[0],
-                                 "last": user.name.split(" ")[-1],
-                                 "age": user.age,
-                                 "password": user.password,
-                                 "balance": user.balance})
+        writer.writeheader()
+        for user in users:
+            writer.writerow({"first": user.name.split(" ")[0],
+                             "last": user.name.split(" ")[-1],
+                             "age": user.age,
+                             "password": user.password,
+                             "balance": user.balance})
 ```
 - **Purpose**: Saves account data to a CSV file.
 
 ### Static Method: `print_accounts(accounts: list["Account"]) -> None`
 ```python
-    @staticmethod
-    def print_accounts(users: list["Account"]) -> None:
-        for user in users:
-            print(f"Name: {user.name:<20} Age: {user.age}")
+@staticmethod
+def print_accounts(users: list["Account"]) -> None:
+    for user in users:
+        print(f"Name: {user.name:<20} Age: {user.age}")
 ```
 - **Purpose**: Prints the details of all accounts.
 
 ### Method: `__str__(self) -> str`
 ```python
-    def __str__(self) -> str:
-        return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."
+def __str__(self) -> str:
+    return f"Name: {self.name}, Age: {self.age}, Password: {self.password}, Balance: {self.balance}."
 ```
 - **Purpose**: Returns a string representation of the account.
 
