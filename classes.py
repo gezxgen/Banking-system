@@ -1,5 +1,5 @@
 from csv import DictReader, DictWriter
-from getters import validate
+from getters import *
 
 
 # Class blueprint for an account

@@ -1,5 +1,6 @@
 from getters import *
 from classes import Account
+from os import system
 
 
 def main():
@@ -34,36 +35,37 @@ def main():
                 else:
                     print("The entered user was not found in the database.")
                     is_logged_in = False
+                while entry_inner != 5:
+                    if is_logged_in:
+                        entry_inner = get_inner()
+                        match entry_inner:
+                            # Exit
+                            case 0:
+                                Account.set_accounts(filename, accounts)
+                                exit()
 
-                if is_logged_in:
-                    entry_inner = get_inner()
-                    match entry_inner:
-                        # Exit
-                        case 0:
-                            pass
+                            # Deposit
+                            case 1:
+                                pass
 
-                        # Deposit
-                        case 1:
-                            pass
+                            # Withdraw
+                            case 2:
+                                pass
 
-                        # Withdraw
-                        case 2:
-                            pass
+                            # Change password
+                            case 3:
+                                pass
 
-                        # Change password
-                        case 3:
-                            pass
+                            # Change owner
+                            case 4:
+                                pass
 
-                        # Change owner
-                        case 4:
-                            pass
+                            # Log out
+                            case 5:
+                                is_logged_in = False
 
-                        # Log out
-                        case 5:
-                            pass
-
-                        case _:
-                            print("Invalid entry")
+                            case _:
+                                print("Invalid entry")
 
 
             # New account
