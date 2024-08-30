@@ -1,6 +1,5 @@
 from getters import *
 from classes import Account
-from os import system
 
 
 def main():
@@ -8,11 +7,10 @@ def main():
     new_account: list[int | str] = ["" for _ in range(5)]
     filename: str = "Accounts.csv"
     accounts: list["Account"] = Account.get_accounts(filename)
-    username: str = ""
-    userpassword: str = ""
-    userindex: int = 0
-    is_logged_in: bool = False
-    entry: str = ""
+    user_index: int
+    is_logged_in: bool
+    entry: str
+    amount: str
     entry_inner: int = 0
 
     # endless loop
@@ -27,9 +25,7 @@ def main():
             # Login
             case 1:
                 print("Entry the details to your account.")
-                username = get_name("first") + " " + get_name("last")
-                userpassword = get_password()
-                if userindex := validate_user(username, userpassword, accounts):
+                if user_index := validate_user((get_name("first") + " " + get_name("last")), get_password(), accounts):
                     is_logged_in = True
                     print("Logged in successfully")
                 else:
@@ -46,11 +42,17 @@ def main():
 
                             # Deposit
                             case 1:
-                                pass
+                                amount = get_withdraw_deposit("deposit")
+                                accounts[user_index].deposit(amount)
+                                print(f"New account balance: {accounts[user_index]}")
+                                print("Deposit was successful")
 
                             # Withdraw
                             case 2:
-                                pass
+                                amount = get_withdraw_deposit("withdraw")
+                                accounts[user_index].withdraw(amount)
+                                print(f"New account balance: {accounts[user_index]}")
+                                print("Withdraw was successful")
 
                             # Change password
                             case 3:
@@ -66,7 +68,6 @@ def main():
 
                             case _:
                                 print("Invalid entry")
-
 
             # New account
             case 2:

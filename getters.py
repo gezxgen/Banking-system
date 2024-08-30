@@ -48,6 +48,13 @@ def get_balance() -> str:
         print("Entered balance was not a number or smaller 0 or greater 10000.")
 
 
+def get_withdraw_deposit(string: str) -> str:
+    while True:
+        amount = input(f"Enter the amount to {string}: ")
+        if validate(amount, string[0]):
+            return amount
+
+
 def validate(dut: str, mode: str) -> bool:
     mode.lower()
     dut_int: int = 0
@@ -117,9 +124,9 @@ def validate_num(n: str, number=10000) -> bool:
         return False
 
 
-def validate_user(username: str, userpassword: str, users: list["Account"]) -> int:
+def validate_user(username: str, user_password: str, users: list["Account"]) -> int:
     for i, user in enumerate(users):
-        if user.name == username and user.password == userpassword:
+        if user.name == username and user.password == user_password:
             return i
     return 0
 
@@ -133,7 +140,7 @@ def get_inner() -> int:
         print("1: Deposit")
         print("2: Withdraw")
         print("3: Change password")
-        print("4: Change owner") # change username & age
+        print("4: Change owner")  # change username & age
         print("5: Log out")
         entry = input("Which action would you like to do? ")
 
