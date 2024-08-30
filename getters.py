@@ -137,4 +137,4 @@ def get_inner() -> int:
         print("5: Log out")
         entry = input("Which action would you like to do? ")
 
-    return entry
+    return int(entry)
