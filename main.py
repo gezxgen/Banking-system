@@ -7,6 +7,10 @@ def main():
     new_account: list[int | str] = ["" for _ in range(5)]
     filename: str = "Accounts.csv"
     accounts: list["Account"] = Account.get_accounts(filename)
+    username: str = ""
+    userpassword: str = ""
+    userindex: int = 0
+    is_logged_in: bool = False
 
     # endless loop
     while True:
@@ -19,7 +23,17 @@ def main():
 
             # Login
             case 1:
-                print("Not made yet...")
+                if not is_logged_in:
+                    print("Entry the details to your account.")
+                    username = get_name("first") + " " + get_name("last")
+                    userpassword = get_password()
+                    if validate_user(username, userpassword):
+                        userindex = load_user(username, userpassword)
+                    else:
+                        print("The entered user was not found in the database.")
+                else:
+                    pass
+
 
             # New account
             case 2:

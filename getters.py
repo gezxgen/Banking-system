@@ -13,10 +13,6 @@ def get_main() -> str:
     return entry
 
 
-def get_login() -> str:
-    pass
-
-
 def get_name(part: str) -> str:
     while True:
         name: str = input(f"Enter your {part} name: ")
