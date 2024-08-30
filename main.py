@@ -1,5 +1,5 @@
 from getters import *
-from classes import Account
+from classes import *
 
 
 def main():
@@ -31,8 +31,8 @@ def main():
                 else:
                     print("The entered user was not found in the database.")
                     is_logged_in = False
-                while entry_inner != 5:
-                    if is_logged_in:
+                if is_logged_in:
+                    while entry_inner != 5:
                         entry_inner = get_inner()
                         match entry_inner:
                             # Exit

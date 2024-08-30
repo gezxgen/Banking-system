@@ -1,4 +1,4 @@
-from getters import validate, validate_num
+from getters import *
 
 
 def test_validate_n_valid():
