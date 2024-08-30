@@ -66,7 +66,7 @@ def main():
                             # Change owner - no U18
                             case 4:
                                 print("Fill out the questions with information about the future owner.")
-                                user_name = get_name("first") + " " + get_name("last")
+                                user_name = get_name("first").capitalize() + " " + get_name("last").capitalize()
                                 user_age = get_age()
                                 if int(user_age) >= 18:
                                     accounts[user_index].age = user_age

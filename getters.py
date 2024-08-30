@@ -66,7 +66,7 @@ def validate(dut: str, mode: str) -> bool:
     match mode:
         case "n":
             dut.strip()
-            if dut and dut.isalpha() and len(dut) < 20:
+            if dut and len(dut) < 100:
                 return True
 
         case "a":

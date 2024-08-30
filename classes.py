@@ -16,6 +16,7 @@ class Account:
     @name.setter
     def name(self, name: str) -> None:
         from getters import validate
+        name.capitalize()
         if validate(name, "n"):
             self._name = name.strip().lower().capitalize()
 
