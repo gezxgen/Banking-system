@@ -13,6 +13,7 @@ def main():
     amount: str
     user_name: str
     entry_inner: int = 0
+    new_password: str
 
     # endless loop
     while True:
@@ -58,7 +59,8 @@ def main():
 
                             # Change password
                             case 3:
-                                pass
+                                new_account[user_index] = get_password()
+
 
                             # Change owner
                             case 4:
