@@ -37,7 +37,33 @@ def main():
 
                 if is_logged_in:
                     entry_inner = get_inner()
-                    pass
+                    match entry_inner:
+                        # Exit
+                        case 0:
+                            pass
+
+                        # Deposit
+                        case 1:
+                            pass
+
+                        # Withdraw
+                        case 2:
+                            pass
+
+                        # Change password
+                        case 3:
+                            pass
+
+                        # Change owner
+                        case 4:
+                            pass
+
+                        # Log out
+                        case 5:
+                            pass
+
+                        case _:
+                            print("Invalid entry")
 
 
             # New account
@@ -54,6 +80,9 @@ def main():
             # Print a list of all accounts
             case 3:
                 Account.print_accounts(accounts)
+
+            case _:
+                print("Invalid entry")
 
 
 if __name__ == "__main__":
