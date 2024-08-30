@@ -126,13 +126,15 @@ def validate_user(username: str, userpassword: str, users: list["Account"]) -> i
 
 def get_inner() -> int:
     entry: str = ""
-    values: set[str] = {"0", "1", "2", "3"}
+    values: set[str] = {"0", "1", "2", "3", "4", "5"}
 
     while entry not in values:
         print("0: Exit")
-        print("1: Log out")
-        print("2: ...")
-        print("3: ...")
+        print("1: Deposit")
+        print("2: Withdraw")
+        print("3: Change password")
+        print("4: Change owner") # change username & age
+        print("5: Log out")
         entry = input("Which action would you like to do? ")
 
     return entry
