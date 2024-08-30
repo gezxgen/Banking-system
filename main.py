@@ -12,7 +12,7 @@ def main():
     userindex: int = 0
     is_logged_in: bool = False
     entry: str = ""
-    entry_inner: str = ""
+    entry_inner: int = 0
 
     # endless loop
     while True:
