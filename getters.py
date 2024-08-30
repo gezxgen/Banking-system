@@ -23,11 +23,11 @@ def get_name(part: str) -> str:
             return name.strip().lower().capitalize()
 
 
-def get_age() -> int:
+def get_age() -> str:
     while True:
         age = input("Enter your age: ")
         if validate(age, "a"):
-            return int(age)
+            return age
         print("Entered age was not a number or smaller 0 or greater 120.")
 
 

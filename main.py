@@ -12,8 +12,8 @@ def main():
     entry: str
     amount: str
     user_name: str
+    user_age: str
     entry_inner: int = 0
-    new_password: str
 
     # endless loop
     while True:
@@ -59,12 +59,21 @@ def main():
 
                             # Change password
                             case 3:
-                                new_account[user_index] = get_password()
+                                print("Make sure to enter the password correctly!")
+                                accounts[user_index].password = get_password()
+                                print("Password was set.")
 
-
-                            # Change owner
+                            # Change owner - no U18
                             case 4:
-                                pass
+                                print("Fill out the questions with information about the future owner.")
+                                user_name = get_name("first") + " " + get_name("last")
+                                user_age = get_age()
+                                if int(user_age) >= 18:
+                                    accounts[user_index].age = user_age
+                                    accounts[user_index].name = user_name
+                                    print("New owner is set.")
+                                else:
+                                    print("The future owner is not yet 18 years old.")
 
                             # Log out
                             case 5:
