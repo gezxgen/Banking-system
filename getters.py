@@ -1,3 +1,6 @@
+from classes import Account
+
+
 # get the users option
 def get_main() -> str:
     entry: str = ""
@@ -5,7 +8,7 @@ def get_main() -> str:
 
     while entry not in values:
         print("0: Exit")
-        print("1: Login")
+        print("1: Log in")
         print("2: Create account")
         print("3: View accounts")
         entry = input("Which action would you like to do? ")
@@ -112,3 +115,24 @@ def validate_num(n: str, number=10000) -> bool:
         return True
     else:
         return False
+
+
+def validate_user(username: str, userpassword: str, users: list["Account"]) -> int:
+    for i, user in enumerate(users):
+        if user.name == username and user.password == userpassword:
+            return i
+    return 0
+
+
+def get_inner() -> int:
+    entry: str = ""
+    values: set[str] = {"0", "1", "2", "3"}
+
+    while entry not in values:
+        print("0: Exit")
+        print("1: Log out")
+        print("2: ...")
+        print("3: ...")
+        entry = input("Which action would you like to do? ")
+
+    return entry

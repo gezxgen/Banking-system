@@ -11,6 +11,8 @@ def main():
     userpassword: str = ""
     userindex: int = 0
     is_logged_in: bool = False
+    entry: str = ""
+    entry_inner: str = ""
 
     # endless loop
     while True:
@@ -23,15 +25,18 @@ def main():
 
             # Login
             case 1:
-                if not is_logged_in:
-                    print("Entry the details to your account.")
-                    username = get_name("first") + " " + get_name("last")
-                    userpassword = get_password()
-                    if validate_user(username, userpassword):
-                        userindex = load_user(username, userpassword)
-                    else:
-                        print("The entered user was not found in the database.")
+                print("Entry the details to your account.")
+                username = get_name("first") + " " + get_name("last")
+                userpassword = get_password()
+                if userindex := validate_user(username, userpassword, accounts):
+                    is_logged_in = True
+                    print("Logged in successfully")
                 else:
+                    print("The entered user was not found in the database.")
+                    is_logged_in = False
+
+                if is_logged_in:
+                    entry_inner = get_inner()
                     pass
 
 
